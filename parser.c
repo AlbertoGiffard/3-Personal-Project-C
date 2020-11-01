@@ -38,6 +38,7 @@ int parser_EmployeeFromBinary(FILE* pFile, LinkedList* pArrayListEmployee)
         {
             break;
         }
+        //
         fread(name, sizeof(char), 50, pFile);
         fread(workHours, sizeof(char), 50, pFile);
         fread(salary, sizeof(char), 50, pFile);

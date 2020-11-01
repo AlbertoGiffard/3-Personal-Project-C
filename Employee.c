@@ -140,17 +140,25 @@ void employee_delete(Employee* this)
 /***********************Compares*****************************/
 int employee_CompareByName(Employee* e1, Employee* e2)
 {
-    return strcmp(e1->nombre, e2->nombre);
+    char nameE1[50];
+    char nameE2[50];
+    employee_getNombre(e1, nameE1);
+    employee_getNombre(e2, nameE2);
+    return strcmp(nameE1, nameE2);
 }
 int employee_CompareById(Employee* e1, Employee* e2)
 {
+    int idE1;
+    int idE2;
+    employee_getId(e1, &idE1);
+    employee_getId(e2, &idE2);
     int result = 0;
-    if(e1->id > e2->id)
+    if(idE1 > idE2)
     {
         result = 1;
     }else
     {
-        if(e1->id < e2->id)
+        if(idE1 < idE2)
         {
             result = -1;
         }
