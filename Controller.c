@@ -77,51 +77,76 @@ int validateId(LinkedList* pArrayListEmployee, char id[])
     }
     return result;
 }
+int lastId(LinkedList* pArrayListEmployee)
+{
+    int listLength;
+    int i;
+    int id;
+    Employee* aux;
+    listLength = ll_len(pArrayListEmployee);
+    id = -1;
+    for(i = 0; i < listLength; i++)
+    {
+        if(i == listLength-1)
+        {
+            aux = (Employee*) ll_get(pArrayListEmployee, i);
+            employee_getId(aux, &id);
+            break;
+        }
+    }
+    return id+1;
+}
+int validateOptions(int since, int until, int option)
+{
+    while(!(option > since && option < until))
+    {
+        printf("Indique una opción válida:");
+        scanf("%d", &option);
+    }
+    return option;
+}
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
-    int id;
-    int newId;
-    char idString[10];
+    int idInt;
+    int workHoursInt;
+    int salaryInt;
+    char idString[50];
     char name[50];
-    char workHours[50];
-    char salary[50];
+    char workHoursString[50];
+    char salaryString[50];
     Employee* aux;
 
-    printf("Ingrese el id:");
-    scanf("%d", &id);
-    while(!(id > 0 && id < 100000))
+    idInt = lastId(pArrayListEmployee);
+    if(idInt != 1)
     {
-        printf("Error, reingrese el id:");
-        scanf("%d", &id);
-    }
-    itoa(id, idString, 10);
-    newId = validateId(pArrayListEmployee, idString);
-    while(newId != 1)
-    {
-        printf("Id en uso, reingrese uno nuevo:");
-        scanf("%d", &id);
-        while(!(id > 0 && id < 100000))
+        itoa(idInt, idString, 10);
+        printf("Ingrese un nombre:");
+        fflush(stdin);
+        gets(name);
+        firstLetterUp(name, 50);
+        printf("Ingrese las horas trabajadas:");
+        scanf("%d", &workHoursInt);
+        validateOptions(-1, 10000, workHoursInt);
+        itoa(workHoursInt, workHoursString, 10);
+        printf("Ingrese el salario:");
+        scanf("%d", &salaryInt);
+        validateOptions(-1, 1000000, salaryInt);
+        itoa(salaryInt, salaryString, 10);
+        aux = employee_newParametros(idString, name, workHoursString, salaryString);
+        if(aux != NULL)
         {
-            printf("Error, reingrese el id:");
-            scanf("%d", &id);
+            ll_add(pArrayListEmployee, aux);
+        } else
+        {
+            printf("             |\n");
+            printf("Error al cargar el usuario\n");
+            printf("             |\n");
         }
-        itoa(id, idString, 10);
-        newId = validateId(pArrayListEmployee, idString);
-    }
-    printf("Ingrese un nombre:");
-    fflush(stdin);
-    gets(name);
-    firstLetterUp(name, 50);
-    printf("Ingrese las horas trabajadas:");
-    fflush(stdin);
-    gets(workHours);
-    printf("Ingrese el salario:");
-    fflush(stdin);
-    gets(salary);
-    aux = employee_newParametros(idString, name, workHours, salary);
-    if(aux != NULL)
+    } else
     {
-        ll_add(pArrayListEmployee, aux);
+        printf("             |\n");
+        printf("Error al cargar el usuario\n");
+        printf("             |\n");
     }
     return 1;
 }
@@ -191,7 +216,9 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
     }
     if(result == 0)
     {
+        printf("                    |\n");
         printf("No se encontró ningún empleado por ese id\n");
+        printf("                    |\n");
     }
 
     return 1;
@@ -250,7 +277,9 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     }
     if(result == 0)
     {
+        printf("                    |\n");
         printf("No se encontró ningún empleado por ese id\n");
+        printf("                    |\n");
     }
 
     return 1;
@@ -301,23 +330,17 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
     printf("Ordenar por:\n");
     printf("1. Id\n");
     printf("2. Nombre\n");
+    printf("3. Horas trabajadas\n");
+    printf("4. Sueldo\n");
     printf("Elija una opción:");
     scanf("%d", &auxOrderBy);
-    while(!(auxOrderBy > 0 && auxOrderBy < 3))
-    {
-        printf("Indique una opción válida:");
-        scanf("%d", &auxOrderBy);
-    }
+    validateOptions(0, 5, auxOrderBy);
     printf("En orden:\n");
     printf("1. Ascendente\n");
     printf("2. Descendente\n");
     printf("Elija una opción:");
     scanf("%d", &auxDirection);
-    while(!(auxDirection > 0 && auxDirection < 3))
-    {
-        printf("Indique una opción válida:");
-        scanf("%d", &auxDirection);
-    }
+    validateOptions(0, 3, auxDirection);
     orderBy = auxOrderBy;
     if(auxDirection == 1)
     {
@@ -326,12 +349,21 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
     {
         direction = 0;
     }
-    if(orderBy == 1)
+    //swtich
+    switch(orderBy)
     {
-        ll_sort(pArrayListEmployee, employee_CompareById, direction);
-    } else
-    {
-        ll_sort(pArrayListEmployee, employee_CompareByName, direction);
+        case 1:
+            ll_sort(pArrayListEmployee, employee_CompareById, direction);
+            break;
+        case 2:
+            ll_sort(pArrayListEmployee, employee_CompareByName, direction);
+            break;
+        case 3:
+            ll_sort(pArrayListEmployee, employee_CompareByWorkHours, direction);
+            break;
+        case 4:
+            ll_sort(pArrayListEmployee, employee_CompareBySalary, direction);
+            break;
     }
     return 1;
 }

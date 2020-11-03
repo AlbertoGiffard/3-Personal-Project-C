@@ -10,4 +10,7 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee);
 
 //propias
 int firstLetterUp(char data[], int length);
-int validateId(LinkedList* pArrayListEmployee);
+int validateId(LinkedList* pArrayListEmployee, char id[]);
+int validateOptions(int since, int until, int option);
+int lastId(LinkedList* pArrayListEmployee);
+int findByName(LinkedList* pArrayListEmployee, char name[]);

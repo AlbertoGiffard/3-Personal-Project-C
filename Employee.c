@@ -138,20 +138,24 @@ void employee_delete(Employee* this)
     }
 }
 /***********************Compares*****************************/
-int employee_CompareByName(Employee* e1, Employee* e2)
+int employee_CompareByName(void* e1, void* e2)
 {
     char nameE1[50];
     char nameE2[50];
-    employee_getNombre(e1, nameE1);
-    employee_getNombre(e2, nameE2);
+    Employee* employee1 = (Employee*) e1;
+    Employee* employee2 = (Employee*) e2;
+    employee_getNombre(employee1, nameE1);
+    employee_getNombre(employee2, nameE2);
     return strcmp(nameE1, nameE2);
 }
-int employee_CompareById(Employee* e1, Employee* e2)
+int employee_CompareById(void* e1, void* e2)
 {
     int idE1;
     int idE2;
-    employee_getId(e1, &idE1);
-    employee_getId(e2, &idE2);
+    Employee* employee1 = (Employee*) e1;
+    Employee* employee2 = (Employee*) e2;
+    employee_getId(employee1, &idE1);
+    employee_getId(employee2, &idE2);
     int result = 0;
     if(idE1 > idE2)
     {
@@ -184,4 +188,45 @@ int DataOfOneEmployee(Employee* dataEmployee)
 
     return 1;
 }
-
+int employee_CompareByWorkHours(void* e1, void* e2)
+{
+    int workHoursE1;
+    int workHoursE2;
+    Employee* employee1 = (Employee*) e1;
+    Employee* employee2 = (Employee*) e2;
+    employee_getHorasTrabajadas(employee1, &workHoursE1);
+    employee_getHorasTrabajadas(employee2, &workHoursE2);
+    int result = 0;
+    if(workHoursE1 > workHoursE2)
+    {
+        result = 1;
+    }else
+    {
+        if(workHoursE1 < workHoursE2)
+        {
+            result = -1;
+        }
+    }
+    return result;
+}
+int employee_CompareBySalary(void* e1, void* e2)
+{
+    int salaryE1;
+    int salaryE2;
+    Employee* employee1 = (Employee*) e1;
+    Employee* employee2 = (Employee*) e2;
+    employee_getSueldo(employee1, &salaryE1);
+    employee_getSueldo(employee2, &salaryE2);
+    int result = 0;
+    if(salaryE1 > salaryE2)
+    {
+        result = 1;
+    }else
+    {
+        if(salaryE1 < salaryE2)
+        {
+            result = -1;
+        }
+    }
+    return result;
+}

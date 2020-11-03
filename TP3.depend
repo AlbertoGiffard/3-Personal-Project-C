@@ -248,7 +248,7 @@
 
 1604234107 c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\controller.h
 
-1604233806 source:c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\controller.c
+1604362264 source:c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\controller.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -259,17 +259,17 @@
 
 1604149366 c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\linkedlist.h
 
-1604188718 c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\employee.h
+1604362557 c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\employee.h
 
 1603751519 c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\parser.h
 
-1604181487 source:c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\employee.c
+1604362557 source:c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\employee.c
 	<stdlib.h>
 	<stdio.h>
 	"Employee.h"
 	<string.h>
 
-1604189093 source:c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\main.c
+1604358945 source:c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -279,7 +279,7 @@
 	"Controller.h"
 	"Employee.h"
 
-1604234107 c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\controller.h
+1604361114 c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\controller.h
 
 1604241294 source:c:\users\alber\onedrive\documentos\utn\1er cuatrimestre\laboratorio i  - programacion i\tp\tp_laboratorio_3\tp_laboratorio_3\parser.c
 	<stdio.h>
