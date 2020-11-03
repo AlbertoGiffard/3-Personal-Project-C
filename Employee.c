@@ -180,11 +180,11 @@ int DataOfOneEmployee(Employee* dataEmployee)
     employee_getNombre(dataEmployee, name);
     employee_getSueldo(dataEmployee, &salary);
     employee_getHorasTrabajadas(dataEmployee, &workHours);
-    printf("--------------------------------------\n");
-    printf("|                 DATOS              |\n");
-    printf("--------------------------------------\n");
-    printf("| NOMBRE | SUELDO | HORAS TRABAJADAS |\n");
-    printf("  %-9s %-13d %d\n", name, salary, workHours);
+    printf("---------------------------------------------\n");
+    printf("|                    DATOS                  |\n");
+    printf("---------------------------------------------\n");
+    printf("| ID |  NOMBRE  | SUELDO | HORAS TRABAJADAS |\n");
+    printf(" %-5d %-9s %-13d %d\n", id, name, salary, workHours);
 
     return 1;
 }

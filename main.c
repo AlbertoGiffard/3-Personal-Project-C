@@ -27,6 +27,7 @@ int main()
 {
     setlocale(LC_ALL, "");
     int option;
+    char id[10];
     LinkedList* list;
     list = ll_newLinkedList();
 
@@ -38,9 +39,12 @@ int main()
             case 1:
                 if(controller_loadFromText("data.csv", list) == 1)
                 {
-                    printf("           |\n");
-                    printf("Carga de datos exitosa\n");
-                    printf("           |\n");
+                    if(controller_loadIdFromText("id.csv", id) == 1)
+                    {
+                        printf("           |\n");
+                        printf("Carga de datos exitosa\n");
+                        printf("           |\n");
+                    }
                 } else
                 {
                     printf("                 |\n");
@@ -51,9 +55,12 @@ int main()
             case 2:
                 if(controller_loadFromBinary("data.bin", list) == 1)
                 {
-                    printf("           |\n");
-                    printf("Carga de datos exitosa\n");
-                    printf("           |\n");
+                    if(controller_loadIdFromBinary("id.bin", id) == 1)
+                    {
+                        printf("           |\n");
+                        printf("Carga de datos exitosa\n");
+                        printf("           |\n");
+                    }
                 } else
                 {
                     printf("                 |\n");
@@ -62,7 +69,7 @@ int main()
                 }
                 break;
             case 3:
-                if(controller_addEmployee(list) == 1)
+                if(controller_addEmployee(list, id) == 1)
                 {
                     printf("                 |\n");
                     printf("Cargado el nuevo empleado exitosamente\n");
@@ -149,9 +156,12 @@ int main()
             case 8:
                 if(controller_saveAsText("data.csv", list) == 1)
                 {
-                    printf("           |\n");
-                    printf("Guardado de datos exitoso\n");
-                    printf("           |\n");
+                    if(controller_saveIdAsText("id.csv", id) == 1)
+                    {
+                        printf("           |\n");
+                        printf("Guardado de datos exitoso\n");
+                        printf("           |\n");
+                    }
                 } else
                 {
                     printf("               |\n");
@@ -162,9 +172,12 @@ int main()
             case 9:
                 if(controller_saveAsBinary("data.bin", list) == 1)
                 {
-                    printf("           |\n");
-                    printf("Guardado de datos exitoso\n");
-                    printf("           |\n");
+                    if(controller_saveIdAsBinary("id.bin", id) == 1)
+                    {
+                        printf("           |\n");
+                        printf("Guardado de datos exitoso\n");
+                        printf("           |\n");
+                    }
                 } else
                 {
                     printf("               |\n");

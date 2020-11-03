@@ -6,6 +6,19 @@
 #include "Employee.h"
 #include "parser.h"
 
+int controller_loadIdFromText(char* path , char* id)
+{
+    FILE* pFile;
+
+    pFile = fopen(path, "r");
+    if(pFile != NULL)
+    {
+        fscanf(pFile, "%[^\n]\n", id);
+    }
+    fclose(pFile);
+
+    return 1;
+}
 int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile;
@@ -17,8 +30,19 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 
     return 1;
 }
+int controller_loadIdFromBinary(char* path , char* id)
+{
+    FILE* pFile;
 
+    pFile = fopen(path, "rb");
+    if(pFile != NULL)
+    {
+        fread(id, sizeof(char), 10, pFile);
+    }
+    fclose(pFile);
 
+    return 1;
+}
 int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile;
@@ -105,21 +129,22 @@ int validateOptions(int since, int until, int option)
     }
     return option;
 }
-int controller_addEmployee(LinkedList* pArrayListEmployee)
+int controller_addEmployee(LinkedList* pArrayListEmployee, char* idString)
 {
     int idInt;
     int workHoursInt;
     int salaryInt;
-    char idString[50];
+    char idAux[50];
     char name[50];
     char workHoursString[50];
     char salaryString[50];
     Employee* aux;
 
-    idInt = lastId(pArrayListEmployee);
+    strcpy(idAux, idString);
+    /*idInt = lastId(pArrayListEmployee);
     if(idInt != 1)
-    {
-        itoa(idInt, idString, 10);
+    {*/
+        //itoa(*id, idString, 10);
         printf("Ingrese un nombre:");
         fflush(stdin);
         gets(name);
@@ -135,6 +160,9 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
         aux = employee_newParametros(idString, name, workHoursString, salaryString);
         if(aux != NULL)
         {
+            idInt = atoi(idAux);
+            idInt += 1;
+            itoa(idInt, idString, 10);
             ll_add(pArrayListEmployee, aux);
         } else
         {
@@ -142,12 +170,12 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
             printf("Error al cargar el usuario\n");
             printf("             |\n");
         }
-    } else
+    /*} else
     {
         printf("             |\n");
         printf("Error al cargar el usuario\n");
         printf("             |\n");
-    }
+    }*/
     return 1;
 }
 
@@ -367,8 +395,17 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
     }
     return 1;
 }
-
-
+int controller_saveIdAsText(char* path , char* id)
+{
+    FILE* pFile;
+    pFile = fopen(path, "w");
+    if(path != NULL)
+    {
+        fprintf(pFile, "%s\n", id);
+    }
+    fclose(pFile);
+    return 1;
+}
 int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile;
@@ -403,8 +440,17 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
 
     return 1;
 }
-
-
+int controller_saveIdAsBinary(char* path , char* id)
+{
+    FILE* pFile;
+    pFile = fopen(path, "wb");
+    if(path != NULL)
+    {
+        fwrite(id,sizeof(char),10,pFile);
+    }
+    fclose(pFile);
+    return 1;
+}
 int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile;
