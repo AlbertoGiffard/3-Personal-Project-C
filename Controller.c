@@ -9,9 +9,9 @@
 int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile;
+    pFile = fopen(path, "r");
     if(pFile != NULL)
     {
-        pFile = fopen(path, "r");
         parser_EmployeeFromText(pFile,pArrayListEmployee);
     }
 
@@ -22,9 +22,9 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
 int controller_loadFromBinary(char* path, LinkedList* pArrayListEmployee)
 {
     FILE* pFile;
+    pFile = fopen(path, "rb");
     if(pFile != NULL)
     {
-        pFile = fopen(path, "rb");
         parser_EmployeeFromBinary(pFile, pArrayListEmployee);
     }
 
@@ -383,10 +383,9 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
     char workHoursString[50];
     Employee* aux;
     listLength = ll_len(pArrayListEmployee);
+    pFile = fopen(path, "w");
     if(pFile != NULL)
     {
-        pFile = fopen(path, "w");
-
         for(i=0; i<listLength; i++)
         {
             aux = (Employee*) ll_get(pArrayListEmployee, i);
@@ -399,7 +398,6 @@ int controller_saveAsText(char* path, LinkedList* pArrayListEmployee)
             itoa(workHours, workHoursString, 10);
             fprintf(pFile,"%s,%s,%s,%s\n",idString, name, salaryString, workHoursString);
         }
-
         fclose(pFile);
     }
 
@@ -421,9 +419,9 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
     char workHoursString[50];
     Employee* aux;
     listLength = ll_len(pArrayListEmployee);
+    pFile = fopen(path, "wb");
     if(pFile != NULL)
     {
-        pFile = fopen(path, "wb");
         for(i=0; i<listLength; i++)
         {
             aux = (Employee*) ll_get(pArrayListEmployee, i);
@@ -439,7 +437,6 @@ int controller_saveAsBinary(char* path, LinkedList* pArrayListEmployee)
             fwrite(salaryString,sizeof(char),50,pFile);
             fwrite(workHoursString,sizeof(char),50,pFile);
         }
-
         fclose(pFile);
     }
     return 1;
